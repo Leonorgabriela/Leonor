@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Control de Inventario</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =========================
+             BARRA LATERAL
+        ========================== -->
+        <aside class="sidebar">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    I
+                </div>
+
+                <div>
+                    <h1>Inventario</h1>
+                    <span>Miscelánea</span>
+                </div>
+
+            </div>
+
+
+            <!-- MENÚ -->
+
+            <nav>
+
+                <button class="menu active" onclick="mostrarSeccion('inicio')">
+                    🏠
+                    <span>Inicio</span>
+                </button>
+
+                <button class="menu" onclick="mostrarSeccion('inventario')">
+                    📦
+                    <span>Inventario</span>
+                </button>
+
+                <button class="menu" onclick="mostrarSeccion('productos')">
+                    📋
+                    <span>Productos</span>
+                </button>
+
+                <button class="menu" onclick="mostrarSeccion('ventas')">
+                    🛒
+                    <span>Ventas</span>
+                </button>
+
+                <button class="menu" onclick="mostrarSeccion('proveedores')">
+                    🚚
+                    <span>Proveedores</span>
+                </button>
+
+                <button class="menu" onclick="mostrarSeccion('alertas')">
+                    ⚠️
+                    <span>Alertas</span>
+                </button>
+
+            </nav>
+
+
+            <!-- USUARIO -->
+
+            <div class="usuario">
+
+                <div class="avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong>Administrador</strong>
+
+                    <small>
+                        Usuario registrado
+                    </small>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             CONTENIDO PRINCIPAL
+        ========================== -->
+
+        <main class="main">
+
+
+            <!-- ENCABEZADO -->
+
+            <header class="header">
+
+                <div>
+
+                    <p class="subtitulo">
+                        CONTROL DE INVENTARIO
+                    </p>
+
+                    <h2 id="titulo">
+                        Inicio
+                    </h2>
+
+                </div>
+
+
+                <div
+                    class="fecha"
+                    id="fecha">
+                </div>
+
+            </header>
+
+
+
+            <!-- =========================
+                 INICIO
+            ========================== -->
+
+            <section
+                id="inicio"
+                class="seccion activa">
+
+                <div class="bienvenida">
+
+                    <div>
+
+                        <p class="subtitulo">
+                            RESUMEN
+                        </p>
+
+                        <h3>
+                            Estado de tu inventario
+                        </h3>
+
+                        <p>
+                            Consulta las existencias y conoce qué productos
+                            necesitan reabastecimiento.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="boton-principal"
+                        onclick="mostrarSeccion('inventario')">
+
+                        Ver inventario
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- TARJETAS -->
+
+                <div class="tarjetas">
+
+                    <div class="tarjeta">
+
+                        <span>
+                            Productos
+                        </span>
+
+                        <strong>
+                            6
+                        </strong>
+
+                        <small>
+                            Registrados
+                        </small>
+
+                    </div>
+
+
+                    <div class="tarjeta">
+
+                        <span>
+                            Stock disponible
+                        </span>
+
+                        <strong>
+                            102
+                        </strong>
+
+                        <small>
+                            Unidades
+                        </small>
+
+                    </div>
+
+
+                    <div class="tarjeta advertencia">
+
+                        <span>
+                            Por reordenar
+                        </span>
+
+                        <strong>
+                            2
+                        </strong>
+
+                        <small>
+                            Requieren atención
+                        </small>
+
+                    </div>
+
+
+                    <div class="tarjeta">
+
+                        <span>
+                            Ventas
+                        </span>
+
+                        <strong>
+                            40
+                        </strong>
+
+                        <small>
+                            Unidades analizadas
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PRODUCTOS PRÓXIMOS A AGOTARSE -->
+
+                <div class="panel">
+
+                    <div class="panel-titulo">
+
+                        <div>
+
+                            <h3>
+                                Productos próximos a agotarse
+                            </h3>
+
+                            <p>
+                                Estimación basada en la tasa de venta diaria.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="enlace"
+                            onclick="mostrarSeccion('alertas')">
+
+                            Ver alertas →
+
+                        </button>
+
+                    </div>
+
+
+                    <div id="productos-alerta"></div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 INVENTARIO
+            ========================== -->
+
+            <section
+                id="inventario"
+                class="seccion">
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <p class="subtitulo">
+                            INVENTARIO
+                        </p>
+
+                        <h3>
+                            Estado actual de los productos
+                        </h3>
+
+                        <p>
+                            La información permite estimar el comportamiento
+                            del inventario mediante el modelo
+                            I(t) = I₀ − vt.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FILTROS -->
+
+                <div class="filtros">
+
+                    <input
+                        type="text"
+                        id="buscar"
+                        placeholder="Buscar producto..."
+                        onkeyup="filtrarProductos()">
+
+
+                    <select
+                        id="filtroEstado"
+                        onchange="filtrarProductos()">
+
+                        <option value="todos">
+                            Todos los estados
+                        </option>
+
+                        <option value="reordenar">
+                            Reordenar
+                        </option>
+
+                        <option value="suficiente">
+                            Stock suficiente
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- TABLA DE INVENTARIO -->
+
+                <div class="panel tabla-panel">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Producto
+                                </th>
+
+                                <th>
+                                    Categoría
+                                </th>
+
+                                <th>
+                                    Stock actual
+                                </th>
+
+                                <th>
+                                    Venta diaria
+                                </th>
+
+                                <th>
+                                    Días para agotarse
+                                </th>
+
+                                <th>
+                                    Punto de reorden
+                                </th>
+
+                                <th>
+                                    Estado
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="tabla-inventario">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+
+                <!-- =========================
+                     MODELO MATEMÁTICO
+                ========================== -->
+
+                <div class="panel matematica">
+
+                    <p class="subtitulo">
+                        MODELO MATEMÁTICO
+                    </p>
+
+
+                    <h3>
+                        ¿Cómo se calcula?
+                    </h3>
+
+
+                    <div class="formula">
+                        dI/dt = −v
+                    </div>
+
+
+                    <p>
+                        El inventario disminuye de acuerdo con la cantidad
+                        de productos vendidos.
+                    </p>
+
+
+                    <div class="formula">
+                        I(t) = I₀ − vt
+                    </div>
+
+
+                    <p>
+                        Para una tasa de ventas constante, esta ecuación
+                        permite representar cómo cambia el inventario
+                        con el paso del tiempo.
+                    </p>
+
+
+                    <div class="formula">
+                        t = I₀ / v
+                    </div>
+
+
+                    <p>
+                        Con esta expresión se obtiene el tiempo estimado
+                        para que el inventario llegue a cero.
+                    </p>
+
+
+                    <div class="nota">
+
+                        La tasa de venta se obtiene a partir de los
+                        registros de ventas almacenados en el sistema.
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 PRODUCTOS
+            ========================== -->
+
+            <section
+                id="productos"
+                class="seccion">
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <p class="subtitulo">
+                            PRODUCTOS
+                        </p>
+
+                        <h3>
+                            Productos registrados
+                        </h3>
+
+                    </div>
+
+
+                    <button class="boton-principal">
+
+                        + Agregar producto
+
+                    </button>
+
+                </div>
+
+
+
+                <div class="panel tabla-panel">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Producto
+                                </th>
+
+                                <th>
+                                    Categoría
+                                </th>
+
+                                <th>
+                                    Precio
+                                </th>
+
+                                <th>
+                                    Stock inicial
+                                </th>
+
+                                <th>
+                                    Stock actual
+                                </th>
+
+                                <th>
+                                    Proveedor
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Cuaderno
+                                </td>
+
+                                <td>
+                                    Papelería
+                                </td>
+
+                                <td>
+                                    $5.000
+                                </td>
+
+                                <td>
+                                    50
+                                </td>
+
+                                <td>
+                                    20
+                                </td>
+
+                                <td>
+                                    Papelería Bogotá
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Esfero
+                                </td>
+
+                                <td>
+                                    Papelería
+                                </td>
+
+                                <td>
+                                    $1.500
+                                </td>
+
+                                <td>
+                                    40
+                                </td>
+
+                                <td>
+                                    12
+                                </td>
+
+                                <td>
+                                    Distribuciones ABC
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Lápiz
+                                </td>
+
+                                <td>
+                                    Papelería
+                                </td>
+
+                                <td>
+                                    $1.000
+                                </td>
+
+                                <td>
+                                    30
+                                </td>
+
+                                <td>
+                                    30
+                                </td>
+
+                                <td>
+                                    Papelería Bogotá
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 VENTAS
+            ========================== -->
+
+            <section
+                id="ventas"
+                class="seccion">
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <p class="subtitulo">
+                            VENTAS
+                        </p>
+
+                        <h3>
+                            Registrar una venta
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="panel formulario">
+
+                    <label>
+
+                        Producto
+
+                        <select>
+
+                            <option>
+                                Cuaderno
+                            </option>
+
+                            <option>
+                                Esfero
+                            </option>
+
+                            <option>
+                                Lápiz
+                            </option>
+
+                        </select>
+
+                    </label>
+
+
+
+                    <label>
+
+                        Cantidad
+
+                        <input
+                            type="number"
+                            min="1"
+                            value="1">
+
+                    </label>
+
+
+
+                    <label>
+
+                        Fecha
+
+                        <input
+                            type="date"
+                            id="fechaVenta">
+
+                    </label>
+
+
+
+                    <button
+                        class="boton-principal"
+                        onclick="registrarVenta()">
+
+                        Registrar venta
+
+                    </button>
+
+
+                    <p id="mensajeVenta"></p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 PROVEEDORES
+            ========================== -->
+
+            <section
+                id="proveedores"
+                class="seccion">
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <p class="subtitulo">
+                            PROVEEDORES
+                        </p>
+
+                        <h3>
+                            Proveedores registrados
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="panel tabla-panel">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Proveedor
+                                </th>
+
+                                <th>
+                                    Producto
+                                </th>
+
+                                <th>
+                                    Tiempo de entrega
+                                </th>
+
+                                <th>
+                                    Contacto
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody>
+
+                            <tr>
+
+                                <td>
+                                    Papelería Bogotá
+                                </td>
+
+                                <td>
+                                    Cuaderno
+                                </td>
+
+                                <td>
+                                    3 días
+                                </td>
+
+                                <td>
+                                    300 000 0000
+                                </td>
+
+                            </tr>
+
+
+                            <tr>
+
+                                <td>
+                                    Distribuciones ABC
+                                </td>
+
+                                <td>
+                                    Esfero
+                                </td>
+
+                                <td>
+                                    5 días
+                                </td>
+
+                                <td>
+                                    301 000 0000
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 ALERTAS
+            ========================== -->
+
+            <section
+                id="alertas"
+                class="seccion">
+
+                <div class="encabezado-seccion">
+
+                    <div>
+
+                        <p class="subtitulo">
+                            ALERTAS
+                        </p>
+
+                        <h3>
+                            Productos que requieren atención
+                        </h3>
+
+                        <p>
+                            Se muestran los productos que alcanzaron
+                            su punto de reorden.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div id="lista-alertas"></div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

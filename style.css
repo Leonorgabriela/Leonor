@@ -1,0 +1,862 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+
+/* ================================
+   ESTRUCTURA
+================================ */
+
+.app {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+/* ================================
+   BARRA LATERAL
+================================ */
+
+.sidebar {
+    width: 250px;
+    background: #111827;
+    color: white;
+    padding: 24px 16px;
+
+    display: flex;
+    flex-direction: column;
+
+    flex-shrink: 0;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 4px 10px 30px;
+}
+
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 12px;
+
+    background: #6d5dfc;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.logo h1 {
+    font-size: 16px;
+    margin: 0;
+}
+
+
+.logo span {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+
+.menu {
+    border: none;
+
+    background: transparent;
+
+    color: #aeb8c8;
+
+    text-align: left;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+.menu:hover {
+    background: #252d3d;
+    color: white;
+}
+
+
+.menu.active {
+    background: #252d3d;
+    color: white;
+}
+
+
+.usuario {
+    margin-top: auto;
+
+    border-top: 1px solid #293244;
+
+    padding-top: 18px;
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: center;
+}
+
+
+.avatar {
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+
+    background: #ddd9ff;
+
+    color: #5848d6;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+.usuario strong {
+    display: block;
+    font-size: 12px;
+}
+
+
+.usuario small {
+    color: #8e99ab;
+    font-size: 10px;
+}
+
+
+
+/* ================================
+   CONTENIDO
+================================ */
+
+.main {
+    flex: 1;
+
+    padding: 30px 35px;
+
+    min-width: 0;
+}
+
+
+.header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-start;
+
+    margin-bottom: 28px;
+}
+
+
+.header h2 {
+    margin: 0;
+
+    font-size: 28px;
+}
+
+
+.subtitulo {
+    color: #6d5dfc;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    margin: 0 0 6px;
+}
+
+
+.fecha {
+    color: #7b8494;
+
+    font-size: 12px;
+}
+
+
+
+/* ================================
+   SECCIONES
+================================ */
+
+.seccion {
+    display: none;
+}
+
+
+.seccion.activa {
+    display: block;
+}
+
+
+
+/* ================================
+   BIENVENIDA
+================================ */
+
+.bienvenida {
+
+    background: linear-gradient(
+        135deg,
+        #f0efff,
+        white
+    );
+
+    border: 1px solid #e5e3ff;
+
+    border-radius: 18px;
+
+    padding: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+
+.bienvenida h3 {
+    margin: 0 0 6px;
+
+    font-size: 22px;
+}
+
+
+.bienvenida p:not(.subtitulo) {
+    color: #737d8f;
+
+    font-size: 13px;
+}
+
+
+
+/* ================================
+   BOTONES
+================================ */
+
+.boton-principal {
+
+    border: none;
+
+    background: #6d5dfc;
+
+    color: white;
+
+    border-radius: 10px;
+
+    padding: 11px 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.boton-principal:hover {
+    background: #5949e8;
+}
+
+
+.enlace {
+
+    border: none;
+
+    background: transparent;
+
+    color: #6657e9;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+
+/* ================================
+   TARJETAS
+================================ */
+
+.tarjetas {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+.tarjeta {
+
+    background: white;
+
+    border: 1px solid #e8ebf2;
+
+    border-radius: 15px;
+
+    padding: 18px;
+}
+
+
+.tarjeta span,
+.tarjeta small {
+
+    display: block;
+
+    color: #7d8797;
+
+    font-size: 12px;
+}
+
+
+.tarjeta strong {
+
+    display: block;
+
+    font-size: 27px;
+
+    margin: 7px 0;
+}
+
+
+.advertencia {
+
+    background: #fffaf7;
+
+    border-color: #f5d7c8;
+}
+
+
+
+/* ================================
+   PANELES
+================================ */
+
+.panel {
+
+    background: white;
+
+    border: 1px solid #e8ebf2;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 18px;
+}
+
+
+.panel-titulo {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-bottom: 16px;
+}
+
+
+.panel h3 {
+
+    margin: 0 0 5px;
+
+    font-size: 16px;
+}
+
+
+.panel p {
+
+    margin: 0;
+
+    color: #858e9d;
+
+    font-size: 12px;
+}
+
+
+
+/* ================================
+   TABLA
+================================ */
+
+.tabla-panel {
+
+    padding: 0;
+
+    overflow-x: auto;
+}
+
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 850px;
+}
+
+
+th {
+
+    background: #fafbfc;
+
+    color: #7a8494;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    padding: 15px;
+
+    text-align: left;
+}
+
+
+td {
+
+    padding: 15px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    font-size: 12px;
+}
+
+
+td strong {
+
+    font-size: 13px;
+}
+
+
+
+/* ================================
+   ESTADOS
+================================ */
+
+.estado {
+
+    display: inline-block;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+}
+
+
+.suficiente {
+
+    background: #eaf8f0;
+
+    color: #218052;
+}
+
+
+.reordenar {
+
+    background: #fff0eb;
+
+    color: #c75536;
+}
+
+
+
+/* ================================
+   FILTROS
+================================ */
+
+.filtros {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+
+.filtros input,
+.filtros select {
+
+    border: 1px solid #dde2eb;
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 11px 13px;
+
+    font-size: 13px;
+}
+
+
+.filtros input {
+
+    width: 320px;
+}
+
+
+
+/* ================================
+   DOS COLUMNAS
+================================ */
+
+.dos-columnas {
+
+    display: grid;
+
+    grid-template-columns:
+        1.6fr 1fr;
+
+    gap: 16px;
+}
+
+
+
+/* ================================
+   PROYECCIÓN
+================================ */
+
+.datos-proyeccion {
+
+    display: flex;
+
+    gap: 35px;
+
+    margin: 20px 0;
+}
+
+
+.datos-proyeccion span {
+
+    display: block;
+
+    color: #858e9d;
+
+    font-size: 11px;
+}
+
+
+.datos-proyeccion strong {
+
+    font-size: 18px;
+}
+
+
+.grafica {
+
+    height: 180px;
+
+    margin-top: 20px;
+
+    position: relative;
+
+    border-left: 2px solid #cbd0da;
+
+    border-bottom: 2px solid #cbd0da;
+
+    background-image:
+        linear-gradient(#edf0f4 1px, transparent 1px);
+
+    background-size: 100% 35px;
+}
+
+
+.linea-grafica {
+
+    position: absolute;
+
+    width: 80%;
+
+    height: 4px;
+
+    background: #6d5dfc;
+
+    transform: rotate(25deg);
+
+    top: 40px;
+
+    left: 10%;
+
+    border-radius: 5px;
+}
+
+
+
+/* ================================
+   MATEMÁTICA
+================================ */
+
+.matematica {
+
+    background: #fbfaff;
+
+    border-color: #e6e1ff;
+}
+
+
+.formula {
+
+    background: #171b29;
+
+    color: white;
+
+    border-radius: 10px;
+
+    padding: 12px;
+
+    margin: 12px 0;
+
+    font-family: monospace;
+
+    font-size: 17px;
+}
+
+
+.nota {
+
+    margin-top: 16px;
+
+    background: #f0efff;
+
+    color: #5a4dd1;
+
+    border-radius: 10px;
+
+    padding: 11px;
+
+    font-size: 11px;
+}
+
+
+
+/* ================================
+   FORMULARIO
+================================ */
+
+.formulario {
+
+    max-width: 600px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+
+.formulario label {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+.formulario input,
+.formulario select {
+
+    padding: 11px;
+
+    border: 1px solid #dde2eb;
+
+    border-radius: 9px;
+}
+
+
+
+/* ================================
+   ALERTAS
+================================ */
+
+.alerta {
+
+    background: white;
+
+    border: 1px solid #f0ddd6;
+
+    border-left: 4px solid #ef8a65;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+}
+
+
+.alerta h3 {
+
+    margin: 0 0 6px;
+}
+
+
+.datos-alerta {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+
+.dato-alerta {
+
+    background: #fafbfc;
+
+    border-radius: 9px;
+
+    padding: 10px;
+}
+
+
+.dato-alerta span {
+
+    display: block;
+
+    color: #8a93a0;
+
+    font-size: 10px;
+}
+
+
+.dato-alerta strong {
+
+    display: block;
+
+    margin-top: 4px;
+}
+
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1000px) {
+
+    .tarjetas {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    .dos-columnas {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .app {
+
+        display: block;
+    }
+
+
+    .sidebar {
+
+        width: 100%;
+    }
+
+
+    .main {
+
+        padding: 20px;
+    }
+
+
+    .tarjetas {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .bienvenida {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+
+    .filtros {
+
+        flex-direction: column;
+    }
+
+
+    .filtros input {
+
+        width: 100%;
+    }
+
+}
